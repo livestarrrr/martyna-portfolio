@@ -64,6 +64,30 @@ if (lb) {
   document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("open"); });
 }
 
+// kopiowanie e-maila do schowka po kliknięciu (z potwierdzeniem)
+const copyBtn = document.getElementById("copyMail");
+if (copyBtn) {
+  const original = copyBtn.innerHTML;
+  let timer = null;
+  copyBtn.addEventListener("click", async () => {
+    const email = copyBtn.getAttribute("data-email");
+    let ok = false;
+    try {
+      await navigator.clipboard.writeText(email);
+      ok = true;
+    } catch (e) {
+      const t = document.createElement("textarea");
+      t.value = email; t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.focus(); t.select();
+      try { ok = document.execCommand("copy"); } catch (_) {}
+      document.body.removeChild(t);
+    }
+    copyBtn.innerHTML = ok ? "✓ Skopiowano e-mail!" : "✉ " + email;
+    clearTimeout(timer);
+    timer = setTimeout(() => { copyBtn.innerHTML = original; }, 1800);
+  });
+}
+
 // podświetlenie aktywnej pozycji menu (kotwice)
 const navAnchors = [...document.querySelectorAll('.nav-links a[href^="#"]')];
 if (navAnchors.length) {
