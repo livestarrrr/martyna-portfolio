@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analiza danych szpitalnych | Martyna Wilczewska</title>
+<meta name="description" content="Projekt Power BI: 5-stronicowy raport analizy danych szpitalnych. 55 500 przyjęć, koszty leczenia, ubezpieczyciele, profil pacjentów, długość pobytu.">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><span class="logo">MW</span> Martyna Wilczewska</a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html#start">Start</a></li>
+      <li><a href="index.html#o-mnie">O mnie</a></li>
+      <li><a href="index.html#certyfikaty">Certyfikaty</a></li>
+      <li><a href="portfolio.html" class="active nav-portfolio">Portfolio</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+      <li class="nav-cta"><a class="btn btn-primary" href="CV_Martyna_Wilczewska.pdf" download>Pobierz CV</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Start</a> / <a href="portfolio.html">Portfolio</a> / Analiza danych szpitalnych</div>
+    <span class="eyebrow">Projekt Power BI</span>
+    <h1 class="title">Analiza danych szpitalnych</h1>
+    <p class="lead">Interaktywny, 5-stronicowy raport „Healthcare Analytics" analizujący 55 500 przyjęć szpitalnych: profil pacjentów, koszty leczenia i ubezpieczycieli, dane medyczne oraz długość pobytu.</p>
+    <div class="hero-actions" style="margin-top:22px">
+      <a class="btn btn-primary" href="#zywo">▶ Zobacz raport na żywo</a>
+      <a class="btn btn-outline" href="portfolio.html">← Wróć do portfolio</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container report-section">
+
+    <h2 class="reveal">Problem biznesowy</h2>
+    <p class="reveal">Sieć placówek medycznych potrzebowała jednego narzędzia, które odpowie na kluczowe pytania zarządcze: ilu mamy pacjentów i z czym trafiają, ile kosztuje leczenie i jak rozkłada się między ubezpieczycieli, jak wyglądają dane kliniczne (badania, leki) oraz jak efektywnie wykorzystywane są łóżka (długość pobytu, przyjęcia, wypisy). Rozproszone dane utrudniały szybkie decyzje, dlatego celem było połączenie ich w jeden interaktywny raport wspierający decyzje operacyjne i finansowe.</p>
+
+    <h2 class="reveal" style="margin-top:46px">Dane i narzędzia</h2>
+    <ul class="reveal">
+      <li><b>Skala:</b> 55 500 przyjęć, 40 tys. pacjentów, lata 2019 do 2024.</li>
+      <li><b>Zakres danych:</b> wiek, płeć, grupa krwi, schorzenie, typ przyjęcia, szpital, ubezpieczyciel, koszt leczenia, lek, wynik badania, daty przyjęcia i wypisu, długość pobytu.</li>
+      <li><b>Narzędzia:</b> Power BI Desktop, język DAX. Dane demonstracyjne (nie zawierają realnych danych pacjentów).</li>
+    </ul>
+
+    <h2 class="reveal" style="margin-top:46px">Model danych</h2>
+    <p class="reveal">Dane ułożyłam w <b>schemat gwiazdy</b>: centralna tabela faktów <b>Fact_Admissions</b> (przyjęcia) połączona relacjami jeden do wielu z wymiarami:</p>
+    <ul class="reveal">
+      <li><b>Dim_Patients</b> (wiek, płeć, grupa krwi),</li>
+      <li><b>Dim_Insurance</b> (ubezpieczyciel),</li>
+      <li><b>Dim_Date</b> (kalendarz), użyty dla daty przyjęcia i daty wypisu, czyli wymiar pełniący dwie role (relacja aktywna i nieaktywna).</li>
+    </ul>
+    <p class="reveal">Miary trzymam w osobnej <b>tabeli miar</b> (Measures Table), żeby zachować porządek w modelu. Taki układ zapewnia wydajność, czytelność i poprawne filtrowanie między tabelami.</p>
+    <div class="shot reveal"><img src="img/raport-medyczny/medstat.png" alt="Model danych: schemat gwiazdy w Power BI"><div class="cap">Model danych (schemat gwiazdy): tabela faktów, wymiary i tabela miar</div></div>
+
+    <h2 class="reveal" style="margin-top:46px">Strony i wizualizacje raportu</h2>
+    <p class="reveal">Raport składa się z pięciu stron. Użyte wizualizacje to m.in. karty KPI, wykresy słupkowe i liniowe, wykresy pierścieniowe (donut), mapa drzewa (treemap) oraz tabele. Pod każdym zrzutem opisuję, co przedstawia dana strona.</p>
+
+    <!-- 1 -->
+    <h3 class="reveal">1. Strona startowa „Healthcare Analytics"</h3>
+    <p class="reveal">Ekran powitalny z opisem raportu i czterema kafelkami nawigacji (Overview, Billing &amp; Insurance, Medical Insights, Operations &amp; Stay Analysis). Każdy kafelek to przycisk przenoszący do odpowiedniej sekcji.</p>
+    <div class="shot reveal"><img src="img/raport-medyczny/med-1.png" alt="Strona startowa raportu Healthcare Analytics"><div class="cap">Strona startowa z nawigacją do czterech obszarów analizy</div></div>
+
+    <!-- 2 -->
+    <h3 class="reveal">2. Overview (przegląd ogólny)</h3>
+    <p class="reveal">Najważniejsze wskaźniki na jednym ekranie:</p>
+    <ul class="reveal">
+      <li><b>KPI:</b> 56 tys. przyjęć, 40 tys. pacjentów, 1,42 mld rozliczeń, średnie rozliczenie 25,54 tys., średnia długość pobytu 15,5 dnia.</li>
+      <li>Przyjęcia w czasie (2019 do 2024) oraz wg typu (planowe, pilne, nagłe) i wg płci.</li>
+      <li>Rankingi: przyjęcia wg szpitala oraz wg schorzenia (Arthritis, Diabetes, Hypertension, Obesity, Cancer).</li>
+    </ul>
+    <div class="shot reveal"><img src="img/raport-medyczny/med-2.png" alt="Strona Overview: KPI i przekroje przyjęć"><div class="cap">Overview: kluczowe KPI oraz przyjęcia wg roku, typu, płci, szpitala i schorzenia</div></div>
+
+    <!-- 3 -->
+    <h3 class="reveal">3. Billing &amp; Insurance (koszty i ubezpieczenia)</h3>
+    <p class="reveal">Część finansowa raportu:</p>
+    <ul class="reveal">
+      <li><b>KPI:</b> łączne rozliczenia 1,42 mld, średnie 25,54 tys., średnio na dzień pobytu 3,39 tys., maksymalne 52,76 tys.</li>
+      <li>Rozliczenia w czasie oraz wg typu przyjęcia.</li>
+      <li>Podział kosztów wg ubezpieczyciela (Cigna, Blue Cross, Aetna, Medicare, UnitedHealthcare), wg szpitala i wg schorzenia.</li>
+    </ul>
+    <div class="shot reveal"><img src="img/raport-medyczny/med-3.png" alt="Strona Billing & Insurance: analiza kosztów i ubezpieczycieli"><div class="cap">Billing &amp; Insurance: koszty leczenia w podziale na ubezpieczycieli, szpitale i schorzenia</div></div>
+
+    <!-- 4 -->
+    <h3 class="reveal">4. Medical Insights (analiza medyczna)</h3>
+    <p class="reveal">Spojrzenie kliniczne na dane:</p>
+    <ul class="reveal">
+      <li><b>KPI:</b> 40 tys. pacjentów, 6 schorzeń, 33,6% wyników nieprawidłowych, 33,4% prawidłowych, średni wiek pacjenta 51,7 lat.</li>
+      <li>Przyjęcia wg schorzenia oraz rozkład wyników badań (prawidłowe, nieprawidłowe, niejednoznaczne).</li>
+      <li>Przyjęcia wg leku (Lipitor, Ibuprofen, Aspirin, Paracetamol, Penicillin) oraz wg grupy krwi.</li>
+    </ul>
+    <div class="shot reveal"><img src="img/raport-medyczny/med-4.png" alt="Strona Medical Insights: schorzenia, wyniki badań, leki, grupy krwi"><div class="cap">Medical Insights: schorzenia, wyniki badań, leki i grupy krwi</div></div>
+
+    <!-- 5 -->
+    <h3 class="reveal">5. Operations &amp; Stay Analysis (operacje i pobyt)</h3>
+    <p class="reveal">Strona operacyjna:</p>
+    <ul class="reveal">
+      <li><b>KPI:</b> średnia długość pobytu 15,5 dnia, łącznie 861 tys. dni hospitalizacji, 53,16% długich pobytów, maksymalny pobyt 30 dni, 56 tys. wypisów.</li>
+      <li>Średnia długość pobytu w czasie (2019 do 2024) oraz dni hospitalizacji wg typu przyjęcia.</li>
+      <li>Średnia długość pobytu wg schorzenia i wg szpitala oraz ranking długich pobytów wg szpitala.</li>
+    </ul>
+    <div class="shot reveal"><img src="img/raport-medyczny/med-5.png" alt="Strona Operations & Stay Analysis"><div class="cap">Operations &amp; Stay Analysis: długość pobytu, dni hospitalizacji i typy przyjęć</div></div>
+
+    <h2 class="reveal" style="margin-top:46px">Miary użyte na wizualizacjach</h2>
+    <p class="reveal">W raporcie zbudowałam m.in. miary DAX: Total Admissions, Total Patients, Total Billing, Average Billing, Average Billing per Admission, Average Billing per Stay Day, Max Billing, Average Length of Stay, Total Stay Days, Long-Stay Admission Rate, Average Patient Age oraz wskaźniki procentowe wyników badań (% Abnormal, % Normal).</p>
+
+    <h2 class="reveal" style="margin-top:46px">Kluczowe wnioski</h2>
+    <ul class="reveal">
+      <li><b>Duże obciążenie łóżkowe:</b> 55,5 tys. przyjęć i średni pobyt 15,5 dnia to łącznie 861 tys. dni hospitalizacji. Aż 53% to długie pobyty, co wskazuje na wysokie wykorzystanie łóżek i przestrzeń do optymalizacji.</li>
+      <li><b>Powtarzalny wolumen przyjęć:</b> w głównych latach analizy liczba przyjęć utrzymuje się na stabilnym poziomie ok. 11 tys. rocznie, co ułatwia planowanie zasobów i obsady.</li>
+      <li><b>Brak jednego źródła kosztów:</b> 1,42 mld rozliczeń rozkłada się równomiernie na 5 ubezpieczycieli (ok. 280 mln każdy) i 6 schorzeń. Nie ma jednej dominującej pozycji kosztowej, a średni koszt dnia pobytu to 3,39 tys.</li>
+      <li><b>Istotny odsetek nieprawidłowych badań:</b> ok. 1/3 wyników badań jest nieprawidłowa, co jest sygnałem do pogłębionej analizy klinicznej.</li>
+      <li><b>Równomierny profil pacjentów:</b> zbliżony rozkład płci, schorzeń, leków i grup krwi, bez wyraźnych anomalii w strukturze pacjentów.</li>
+    </ul>
+
+    <!-- ŻYWY RAPORT -->
+    <h2 id="zywo" class="reveal" style="margin-top:46px">Raport na żywo</h2>
+    <p class="reveal">Poniżej osadzony, w pełni interaktywny raport. Klikaj, filtruj i przełączaj strony na dolnym pasku:</p>
+    <div class="embed reveal"><iframe title="Healthcare Analytics Dashboard" src="https://app.powerbi.com/view?r=eyJrIjoiZTg3ZjlkNjUtY2M3MC00YWQ3LWIxNDQtNTZhZjFjMjQxNjAwIiwidCI6IjNkZmU5YWI2LTgxYmYtNDkxYy1iNjcwLTAxYzgyNGEwOWUxOSJ9" allowfullscreen></iframe></div>
+    <p class="reveal" style="text-align:center;margin-top:14px"><a class="btn btn-outline" href="https://app.powerbi.com/view?r=eyJrIjoiZTg3ZjlkNjUtY2M3MC00YWQ3LWIxNDQtNTZhZjFjMjQxNjAwIiwidCI6IjNkZmU5YWI2LTgxYmYtNDkxYy1iNjcwLTAxYzgyNGEwOWUxOSJ9" target="_blank" rel="noopener">Otwórz raport w nowej karcie ↗</a></p>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">© <span data-year></span> Martyna Wilczewska · Junior Data Analyst · Gdańsk</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

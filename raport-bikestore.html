@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard sprzedażowy BikeStore | Martyna Wilczewska</title>
+<meta name="description" content="Projekt Power BI: 4-stronicowy dashboard sprzedażowy BikeStore. 85 mln przychodu, analiza sprzedaży, produktów i klientów.">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><span class="logo">MW</span> Martyna Wilczewska</a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html#start">Start</a></li>
+      <li><a href="index.html#o-mnie">O mnie</a></li>
+      <li><a href="index.html#certyfikaty">Certyfikaty</a></li>
+      <li><a href="portfolio.html" class="active nav-portfolio">Portfolio</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+      <li class="nav-cta"><a class="btn btn-primary" href="CV_Martyna_Wilczewska.pdf" download>Pobierz CV</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Start</a> / <a href="portfolio.html">Portfolio</a> / Dashboard BikeStore</div>
+    <span class="eyebrow">Projekt Power BI</span>
+    <h1 class="title">Dashboard sprzedażowy BikeStore</h1>
+    <p class="lead">Interaktywny, 4-stronicowy raport analizujący 85 mln przychodu sieci sklepów rowerowych BikeStore: sprzedaż, produkty i klientów (lata 2011 do 2016).</p>
+    <div class="hero-actions" style="margin-top:22px">
+      <a class="btn btn-primary" href="#zywo">▶ Zobacz raport na żywo</a>
+      <a class="btn btn-outline" href="portfolio.html">← Wróć do portfolio</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container report-section">
+
+    <h2 class="reveal">Problem biznesowy</h2>
+    <p class="reveal">Sieć sklepów rowerowych BikeStore potrzebowała jednego raportu, który pokaże, skąd pochodzą przychody i zysk: które kategorie i produkty sprzedają się najlepiej, jak zmienia się sprzedaż w czasie oraz kim są klienci (wiek, płeć, kraj). Celem było wsparcie decyzji o asortymencie, marketingu i obsłudze klienta na podstawie danych zamiast intuicji.</p>
+
+    <h2 class="reveal" style="margin-top:46px">Dane i narzędzia</h2>
+    <ul class="reveal">
+      <li><b>Skala:</b> 113 tys. zamówień, 85 mln przychodu, lata 2011 do 2016.</li>
+      <li><b>Zakres danych:</b> produkt, kategoria i podkategoria, koszt i cena, ilość zamówień, kraj, wiek i płeć klienta, data.</li>
+      <li><b>Narzędzia:</b> Power BI Desktop, język DAX, Excel.</li>
+    </ul>
+
+    <h2 class="reveal" style="margin-top:46px">Model danych</h2>
+    <p class="reveal">Dane ułożyłam w <b>schemat gwiazdy</b>: centralna tabela faktów <b>FactSales</b> (sprzedaż) połączona relacją jeden do wielu z wymiarem <b>DimDate</b> (kalendarz), co umożliwia analizę w czasie (rok, miesiąc, dzień). Miary trzymam w osobnej <b>tabeli miar (_Measures)</b>, np. Total Sales Revenue, Average Order Value, Sales Growth Rate. Taki układ daje porządek w modelu, wydajność i poprawne filtrowanie.</p>
+    <div class="shot reveal"><img src="img/raport-bikestore/bikestat.png" alt="Model danych BikeStore: schemat gwiazdy"><div class="cap">Model danych: tabela faktów FactSales, wymiar DimDate i tabela miar</div></div>
+
+    <h2 class="reveal" style="margin-top:46px">Strony i wizualizacje raportu</h2>
+    <p class="reveal">Raport ma cztery strony. Użyte wizualizacje to m.in. karty KPI, wykresy liniowe, słupkowe, pierścieniowe (donut), mapa, histogram oraz tabele. Pod każdym zrzutem opisuję, co przedstawia dana strona.</p>
+
+    <!-- 1 -->
+    <h3 class="reveal">1. Strona startowa (LP)</h3>
+    <p class="reveal">Ekran powitalny z nawigacją do trzech sekcji raportu (Sales Overview, Product Overview, Customer Overview). Każdy kafelek to przycisk przenoszący do danej strony.</p>
+    <div class="shot reveal"><img src="img/raport-bikestore/bike-1.png" alt="Strona startowa raportu BikeStore"><div class="cap">Strona startowa z nawigacją do trzech obszarów analizy</div></div>
+
+    <!-- 2 -->
+    <h3 class="reveal">2. Sales Overview (sprzedaż)</h3>
+    <p class="reveal">Ogólny obraz sprzedaży:</p>
+    <ul class="reveal">
+      <li><b>KPI:</b> sprzedaż 85 mln, średni zysk 285 USD, średnia wartość zamówienia 754 USD, dynamika sprzedaży 58,68%.</li>
+      <li>Przychód w czasie (2011 do 2016) oraz sprzedaż wg grupy wiekowej.</li>
+      <li>Sprzedaż wg kategorii (Bikes, Accessories, Clothing), najbardziej zyskowne produkty i zysk wg kategorii.</li>
+    </ul>
+    <div class="shot reveal"><img src="img/raport-bikestore/bike-2.png" alt="Strona Sales Overview"><div class="cap">Sales Overview: KPI, trend przychodu, sprzedaż i zysk wg kategorii</div></div>
+
+    <!-- 3 -->
+    <h3 class="reveal">3. Product Overview (produkty)</h3>
+    <p class="reveal">Analiza asortymentu i rentowności:</p>
+    <ul class="reveal">
+      <li><b>KPI:</b> 1,35 mln sprzedanych sztuk, 480 zysku na zamówienie, zysk całkowity 32,22 mln, marża 37,79%.</li>
+      <li>Sprzedaż jednostek wg kategorii i roku, średni koszt i cena jednostkowa.</li>
+      <li>Przychód wg kategorii i podkategorii, marża wg podkategorii oraz tabela wyników produktów.</li>
+    </ul>
+    <div class="shot reveal"><img src="img/raport-bikestore/bike-3.png" alt="Strona Product Overview"><div class="cap">Product Overview: jednostki, przychód, marża i ranking produktów</div></div>
+
+    <!-- 4 -->
+    <h3 class="reveal">4. Customer Overview (klienci)</h3>
+    <p class="reveal">Profil i wartość klientów:</p>
+    <ul class="reveal">
+      <li><b>KPI:</b> 113 tys. zamówień, 85 mln przychodu, średnia wartość zamówienia 754 USD, średni wiek klienta 36 lat.</li>
+      <li>Przychód i zysk klientów w czasie oraz sprzedaż wg grupy wiekowej i płci.</li>
+      <li>Rozkład klientów wg płci i wieku, zamówienia na mapie i wg kraju (USA, Australia, Kanada, Wielka Brytania, Niemcy, Francja), histogram wieku.</li>
+    </ul>
+    <div class="shot reveal"><img src="img/raport-bikestore/bike-4.png" alt="Strona Customer Overview"><div class="cap">Customer Overview: profil klientów, sprzedaż wg krajów i rozkład wieku</div></div>
+
+    <h2 class="reveal" style="margin-top:46px">Miary użyte na wizualizacjach</h2>
+    <p class="reveal">W raporcie zbudowałam m.in. miary DAX: Total Sales Revenue, Total Profit, Profit Margin, Average Order Value, Average Profit, Sales Growth Rate, Total Unit Sold, Profit per Order, Average Customer Age oraz Month Number do układania danych w czasie.</p>
+
+    <h2 class="reveal" style="margin-top:46px">Kluczowe wnioski</h2>
+    <ul class="reveal">
+      <li><b>Rowery to motor przychodu:</b> kategoria Bikes odpowiada za 62 mln z 85 mln przychodu (ok. 73%). Biznes mocno zależy od jednej kategorii, a akcesoria (15 mln) i odzież (8 mln) to naturalna przestrzeń na sprzedaż łączoną (cross-sell).</li>
+      <li><b>Silny wzrost sprzedaży:</b> dynamika 58,68%, a roczny przychód wzrósł z ok. 9 mln (2011) do 20 mln w szczycie, co potwierdza rosnący biznes.</li>
+      <li><b>Zdrowa rentowność:</b> marża zysku 37,79% i zysk całkowity 32,22 mln przy średnim zysku 285 USD na zamówienie.</li>
+      <li><b>Profil klienta:</b> średni wiek 36 lat i zbliżony podział płci, więc oferta trafia do szerokiej, dorosłej grupy.</li>
+      <li><b>Geografia sprzedaży:</b> największym rynkiem są Stany Zjednoczone, a w dalszej kolejności Australia i Kanada, co wskazuje, gdzie skupić marketing.</li>
+    </ul>
+
+    <!-- ŻYWY RAPORT -->
+    <h2 id="zywo" class="reveal" style="margin-top:46px">Raport na żywo</h2>
+    <p class="reveal">Poniżej osadzony, w pełni interaktywny raport. Klikaj, filtruj i przełączaj strony na dolnym pasku:</p>
+    <div class="embed reveal"><iframe title="BikeStore Dashboard" src="https://app.powerbi.com/view?r=eyJrIjoiNTM2NTViMTUtNzNhOS00NTUyLTkyMTEtZGVlNzQ0NDcyYWVkIiwidCI6IjNkZmU5YWI2LTgxYmYtNDkxYy1iNjcwLTAxYzgyNGEwOWUxOSJ9" allowfullscreen></iframe></div>
+    <p class="reveal" style="text-align:center;margin-top:14px"><a class="btn btn-outline" href="https://app.powerbi.com/view?r=eyJrIjoiNTM2NTViMTUtNzNhOS00NTUyLTkyMTEtZGVlNzQ0NDcyYWVkIiwidCI6IjNkZmU5YWI2LTgxYmYtNDkxYy1iNjcwLTAxYzgyNGEwOWUxOSJ9" target="_blank" rel="noopener">Otwórz raport w nowej karcie ↗</a></p>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">© <span data-year></span> Martyna Wilczewska · Junior Data Analyst · Gdańsk</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

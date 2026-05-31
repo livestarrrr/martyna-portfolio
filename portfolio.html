@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio | Martyna Wilczewska</title>
+<meta name="description" content="Portfolio raportów Power BI: dashboard sprzedażowy BikeStore i analiza danych szpitalnych.">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><span class="logo">MW</span> Martyna Wilczewska</a>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html#start">Start</a></li>
+      <li><a href="index.html#o-mnie">O mnie</a></li>
+      <li><a href="index.html#umiejetnosci">Umiejętności</a></li>
+      <li><a href="index.html#certyfikaty">Certyfikaty</a></li>
+      <li><a href="portfolio.html" class="active nav-portfolio">Portfolio</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+      <li class="nav-cta"><a class="btn btn-primary" href="CV_Martyna_Wilczewska.pdf" download>Pobierz CV</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Start</a> / Portfolio</div>
+    <span class="eyebrow">Portfolio</span>
+    <h1 class="title">Projekty Power BI</h1>
+    <p class="lead">Dwa kompletne raporty zbudowane od surowych danych po interaktywne dashboardy. Wybierz projekt, aby zobaczyć dokładny opis strona po stronie.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="proj-list">
+
+      <article class="proj-item reveal">
+        <div class="proj-ic">📊</div>
+        <span class="proj-label">Sprzedaż · Retail</span>
+        <h2>Dashboard sprzedażowy BikeStore</h2>
+        <p class="desc">4-stronicowy, interaktywny raport analizujący sprzedaż, produkty i klientów sieci BikeStore. Własne miary DAX, mapa geograficzna i KPI z celami.</p>
+        <p class="proj-tags">Power BI · DAX · Excel · 4 strony</p>
+        <a class="proj-open" href="raport-bikestore.html">Otwórz raport →</a>
+      </article>
+
+      <article class="proj-item reveal">
+        <div class="proj-ic">🏥</div>
+        <span class="proj-label">Medyczny · Healthcare</span>
+        <h2>Analiza danych szpitalnych</h2>
+        <p class="desc">5-stronicowy raport analizujący profil pacjentów, koszty leczenia i ubezpieczycieli, długość pobytu oraz efektywność operacyjną placówki.</p>
+        <p class="proj-tags">Power BI · DAX · 5 stron</p>
+        <a class="proj-open" href="raport-medyczny.html">Otwórz raport →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">© <span data-year></span> Martyna Wilczewska · Junior Data Analyst · Gdańsk</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

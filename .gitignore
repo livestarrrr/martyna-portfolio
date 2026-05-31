@@ -1,0 +1,10 @@
+# zależności i narzędzia (nie idą na serwer)
+node_modules/
+package.json
+package-lock.json
+_convert_certs.mjs
+
+# pliki robocze / podglądy / checkpoint
+_checkpoint/
+_preview*.png
+_chk*.png
