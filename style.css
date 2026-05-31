@@ -90,11 +90,16 @@ h2.title{font-size:clamp(26px,4vw,40px);margin-bottom:14px;}
 .hero-chart{position:absolute;left:0;right:0;bottom:0;height:120px;z-index:1;opacity:.5;}
 
 /* ---- liczniki ---- */
-.stats{background:var(--green);color:#fff;padding:64px 0;}
-.stats .row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
-.stat .num{font-size:clamp(30px,4vw,46px);font-weight:800;color:#fff;}
-.stat .num .suf{color:var(--beige);}
-.stat .lab{color:#cfe0d6;font-size:14px;font-weight:600;letter-spacing:.4px;margin-top:4px;}
+.stats{background:var(--green);color:#fff;padding:74px 0;}
+.stats .row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center;}
+.stat{position:relative;padding:6px 16px;}
+.stat + .stat::before{content:"";position:absolute;left:0;top:12%;height:76%;width:1px;
+  background:rgba(255,255,255,.16);}
+.stat .num{font-size:clamp(48px,6.8vw,76px);font-weight:800;color:var(--beige);line-height:1;
+  letter-spacing:-1.5px;font-variant-numeric:tabular-nums;}
+.stat .num .suf{color:#fff;}
+.stat .lab{color:#d3e2d9;font-size:13px;font-weight:700;letter-spacing:.8px;margin-top:12px;
+  text-transform:uppercase;}
 
 /* ---- O mnie ---- */
 .about-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:start;}
@@ -114,10 +119,18 @@ h2.title{font-size:clamp(26px,4vw,40px);margin-bottom:14px;}
 /* bez kontenerów: cienka linia akcentu u góry, dużo światła */
 .skill{padding-top:20px;border-top:2px solid var(--line);transition:border-color .25s;}
 .skill:hover{border-top-color:var(--beige);}
-.skill .ic{font-size:30px;line-height:1;margin-bottom:12px;}
+.skill .ic{width:48px;height:48px;margin-bottom:14px;}
+.skill .ic svg{width:100%;height:100%;display:block;}
 .skill h3{font-size:18px;margin-bottom:8px;transition:color .2s;}
 .skill:hover h3{color:var(--beige-d);}
 .skill p{font-size:14.5px;color:var(--muted);}
+/* dodatkowe kompetencje pod 3 narzędziami (bez ikon, czysty tekst) */
+.skills-extra{margin-top:48px;text-align:center;max-width:780px;margin-left:auto;margin-right:auto;}
+.skills-extra .extra-title{font-size:13px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--beige-d);margin-bottom:12px;}
+.skills-extra .extra-line{color:var(--muted);font-size:16.5px;line-height:1.75;}
+.skills-extra .extra-line b{color:var(--green);font-weight:700;}
+.skills-extra .sep{color:var(--beige);font-weight:800;padding:0 10px;}
 
 /* ---- Certyfikaty ---- */
 .cert-info{background:#eef2ec;border:1px solid var(--line);border-left:5px solid var(--beige);
@@ -201,7 +214,8 @@ html:not(.js) .reveal{opacity:1!important;transform:none!important;}
   .hero-photo{order:-1;}
   .skill-grid,.cert-gallery{grid-template-columns:1fr 1fr;}
   .proj-grid{grid-template-columns:1fr;}
-  .stats .row{grid-template-columns:1fr 1fr;gap:30px 12px;}
+  .stats .row{grid-template-columns:1fr 1fr;gap:36px 12px;}
+  .stat + .stat::before{display:none;}
 }
 @media(max-width:520px){
   .skill-grid,.cert-gallery{grid-template-columns:1fr;}
